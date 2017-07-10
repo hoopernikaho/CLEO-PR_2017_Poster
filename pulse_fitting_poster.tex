@@ -1,0 +1,244 @@
+
+\documentclass[portrait,a0,final]{a0poster}
+
+\usepackage{epsfig}
+\usepackage{multicol}
+%\usepackage{pstricks,pst-grad}
+\usepackage{graphicx}
+\DeclareGraphicsRule{.ai}{pdf}{.ai}{}
+\usepackage{color}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{amssymb,amsmath,amsthm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definition of some variables and colors
+%\renewcommand{\rho}{\varrho}
+%\renewcommand{\phi}{\varphi}
+%\newrgbcolor{nus_blue}{0 0.129 0.388}IPS_2016_lijiong
+%\newrgbcolor{nus_gold}{1 0.259 0}
+%\newrgbcolor{nus_lite}{1 0.259 0}
+%\newrgbcolor{lite}{.70 .70 .70}
+%\newrgbcolor{liter}{.95 .95 .95}
+\setlength{\columnsep}{3cm}
+% \setlength{\columnseprule}{2mm}
+\setlength{\parindent}{0.0cm}
+
+
+%% Figures and tables
+%% The multicols package doesn't support the floats, figure and table.
+%% Use tablehere and figurehere in place of table and figure.
+
+\makeatletter
+\newenvironment{tablehere}
+  {\def\@captype{table}}
+  {}
+
+\newenvironment{figurehere}
+  {\def\@captype{figure}}
+  {}
+\makeatother
+
+
+% \figcaption replaces - replacement for \caption
+% necessary, since in the multicols environment \figure and
+% therefore \caption won't work
+
+\newcommand{\ket}[1]{|{#1}\rangle}
+\newcommand{\bra}[1]{\langle{#1}|}
+\newcommand{\braket}[1]{\langle{#1}\rangle}
+
+\setcounter{figure}{1}
+\newcommand{\figcaption}[1]{
+%  \vspace{0.5cm}
+  \begin{center}
+  \begin{quote}
+    {\large {\sc Figure} \arabic{figure}: #1}
+  \end{quote}
+  \end{center}
+ % \vspace{1cm}
+  \stepcounter{figure}
+}
+
+\setcounter{table}{1}
+\newcommand{\tabcaption}[1]{
+  \vspace{0.5cm}
+  \begin{center}
+  \begin{quote}
+    {\normalsize {\sc Table} \arabic{table}: #1}
+  \end{quote}
+  \end{center}
+ % \vspace{1cm}
+  \stepcounter{table}
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%                Poster                        %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{poster}{
+  \begin{center}
+  \begin{minipage}[c]{0.98\textwidth}
+}{
+  \end{minipage}
+  \end{center}
+}
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%% Begin of Document
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\begin{poster}
+\large \sf
+
+%%%%%%%%%%%%%%%%%%%%%
+%%% Header
+%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+
+      %%% CQT_Logo
+      \begin{minipage}[c]{0.05\textwidth}
+        \begin{center}
+          \includegraphics[width=14cm,angle=0]{figures/CQT_Logo}
+        \end{center}
+      \end{minipage}\hspace{10cm}
+      %%% Title
+      \begin{minipage}[c]{0.7\textwidth}
+        \begin{center}
+          {\sc \huge
+          Photon number and timing resolution of a near-infrared continuous-wave source with a transition edge sensor}\\[9mm]
+          {\large Jianwei Lee$^1$,
+          Lijiong Shen$^{1,2}$,
+          Alessandro~Cer\`e$^1$,
+          and Christian~Kurtsiefer$^{1,2}$}\\[9mm]
+          {$^1$Centre for Quantum Technologies, National University of Singapore, Singapore\\
+           $^2$Department of Physics, National University of Singapore, Singapore}
+        \end{center}
+      \end{minipage}
+      %%% NUS-Logo
+      \begin{minipage}[c]{.1\textwidth}
+        \begin{center}
+          \includegraphics[width=8cm,angle=0]{figures/NUS_Logo.pdf}
+        \end{center}
+      \end{minipage}
+\end{center}
+
+\vspace{0.2cm}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%
+%%% Content
+%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+  % \begin{center}{\bf \Large \textsf {Introduction}}\end{center}
+\end{center}
+    The Transition Edge Sensor (TES) is a calorimetric spectrometer that have near unit efficiency and is photon-number resolving.
+    %
+    Slow recovery time, on the order of microseconds, limits the number resolving and timing accuracy for high photon-flux detection.
+    %
+    One method uses the differentiated TES signal to determine the arrival time of overlapping signals and to count X-ray photons~\cite{Fowler:2015ef}.
+    %
+    For near-infrared (NIR) photons the signal-to-noise ratio is low, and timing accuracy is affected by the bandwidth limitations necessary to reject false positives.
+    %
+    Here, we use a two-level discriminator to locate pulses, and the area of the identified signal regions to count photons.
+    %
+    We show how it
+    improves photon number discrimination for NIR continuous wave (CW) sources,
+    and propose a scheme to determine the arrival time and pulse amplitude of the underlying pulses.
+
+\begin{multicols}{2}
+\setlength{\parskip}{0ex}
+% \input{pf_intro}
+\input{pf_edge_detection} %\\[1cm]
+\columnbreak
+\input{pf_number_discrimination}
+\input{pf_conclusion}
+% \input{rnd_poster_fast_switch}
+% \input{rnd_poster_outlook}
+% \input{rnd_poster_bib}
+\end{multicols}
+
+\begin{center}{\bf \large \textsf {References}}\end{center}
+
+\begin{multicols}{2}
+  {\small
+  \begin{flushleft}
+  \noindent
+  % \newline
+  [1] J.~S.~Bell,
+    % ``On the Einstein Podolsky Rosen paradox,'',
+    Physics  \textbf{1}, 195 (1964).
+  \newline
+  ~[2] B.~Hensen, \textit{et al.},
+    % ``Loophole-free Bell inequality violation using electron spins separated by 1.3 kilometres'',
+    Nature \textbf{526}, 682 (2015).
+  \newline
+  ~[3] M.~Giustina, \textit{et al.},
+    % ``Significant-Loophole-Free Test of Bell’s Theorem with Entangled Photons'',
+    Phys. Rev. Lett. \textbf{115}, 250401 (2015).
+  \newline
+  ~[4] L. K. Shalm, \textit{et al.}
+    % ``Strong Loophole-Free Test of Local Realism'',
+    Phys. Rev. Lett. \textbf{115}, 250402 (2015).
+  \newline
+  ~[5] S. Pironio, \textit{et al.},
+    % ``Random Numbers Certified by Bell's Theorem'',
+    Nature \textbf{464}, 1021 (2010).
+  \newline
+  ~[6] M.~Fiorentino, \textit{et al.},
+    % ``Generation of ultrabright tunable polarization entanglement without spatial, spectral, or temporal constraints'',
+    Phys. Rev. A \textbf{69}, 041801 (2004).
+  \newline
+  ~[7] P. H.~Eberhard,
+    % ``Background level and counter efficiencies required for a loophole-free Einstein-Podolsky-Rosen experiment'',
+    Phys Rev. A \textbf{47}, R747 (1993)
+  \newline
+  ~[8] A.~E.~Lita, A.~J.~Miller, S.~W.~Nam,
+    % ``Counting near-infrared single-photons with ($>$ 95\%) efficiency'',
+    Optics express \textbf{16}, 3032 (2008).
+  \newline
+  % ~[9] E.~Knill, Nature \textbf{409}, 46-52 (2001). %[1]
+  % \newline
+  % [2] P.~H.~Eberhard, Phys. Rev. A \textbf{47}, R747 (1993).
+  % \newline
+  % [3] M.~Giustina et al., Nature \textbf{497}, 227 (2013).
+  % \newline
+  % [4] J.~S.~Bell, Physics \textbf{1}, 195-200 (1964).
+  % \newline
+  ~[9] R.~Colbeck, PhD Thesis University of Cambridge (arXiv:0911.3814), (2006). %[5]
+  \newline
+  % [2] B. Hensen et al., Nature \textbf{526}, 682 (2015).
+  % \newline
+  % [6] M.~Fiorentino et al., Phys. Rev. A \textbf{69}, 041801 (2004). 
+  % \newline
+  % ~[10] J.~D.~Bancal et al., New Journal of Phys. 16 (2014) 033011. %[7]
+  % \newline
+  ~[10] W.~P.~Grice, Phys. Rev. A \textbf{84}, 042331 (2011).
+  \newline %[8]
+  % [9] A.~E.~Lita et al., Opt. Express \textbf{16},3032 (2008).
+  % \newline
+  ~[11] A.~L.~Linares et al., Appl. Phys. Lett. \textbf{102}, 12117 (2013). %[10]
+  \newline 
+  ~[12] S.~W.~Lee et al., Proc. of the First Int. Workshop on ECS, 41-46, (2013). %[11]
+  \newline 
+  % \newline
+  % ~[6] W.P.~Grice,
+  %   ``Arbitrarily complete Bell-state measurement using only linear optical elements'',
+  %   Phys. Rev. A, \textbf{84}, 042331 (2011).
+  % \newline
+  ~[13] B.~Williams et al., 
+  % "Complete Bell state measurement realized utilizing time-polarization hyperentanglment," 
+  Conference on Lasers and Electro-Optics, 
+  % OSA Technical Digest (online) 
+  % Optical Society of America, 
+  \textbf{FM2N.8}, (2016).
+  \end{flushleft}
+  } 
+\end{multicols}
+
+\end{poster}
+\end{document}

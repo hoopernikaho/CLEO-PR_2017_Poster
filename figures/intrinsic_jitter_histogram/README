@@ -1,0 +1,37 @@
+raw data: /workspace/projects/TES/data/20170126_TES5_n012_distinguishibility_20MHz_tau_vs_offset/
+
+processed data: /workspace/projects/TES/analysis/20170126_TES5_n012_distinguishibility_20MHz_tau_vs_offset_results/intrinsic_jitter_histogram/
+
+code snippet for generating time of arrival:
+
+def fit_corrected_pulse(filelist, fit_model, t_initial=None, t_final=None):
+    time, _ = hps.trace_extr(filelist[0], t_initial, t_final)
+    a = [fit_shift(*hps.trace_extr(file, t_initial, t_final),
+                   fit_model=fit_model)
+         for file
+         in filelist]
+
+    # reduce to trace length to avoid edge effects
+    idx_0 = int(len(time) / 30)
+    v_len = len(time) - 2 * idx_0
+    time = time[idx_0:idx_0 + v_len]
+    a = [line[idx_0:idx_0 + v_len] for line in a]
+    a_avg = np.nanmean(a, 0)
+    a_std = np.nanstd(a, 0)
+
+    time_of_arrival = [time[find_idx(line,0.00578330951457)] for line in a]
+
+    return time, a_avg-find_bg(a_avg), a_std, time_of_arrival
+
+time_p, signal_p = trace_ave(filelist[mask_1ph])
+def one_pulse(x, x_offset=0, amplitude=1):
+	"""convert the sample single photon pulse into a function
+	that can be used in a fit
+	"""
+	x = x - x_offset
+	return amplitude * np.interp(x, time_p, signal_p)
+
+fit_model = Model(one_pulse)
+time_f, signal_f, signal_var_f, toa = fit_corrected_pulse(filelist[mask_1ph], fit_model,
+									   t_initial,
+									   t_final)

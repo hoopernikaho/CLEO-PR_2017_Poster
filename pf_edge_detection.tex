@@ -1,0 +1,47 @@
+%!TEX root =  pulse_fitting_poster.tex
+% \vspace{-1cm}
+
+\begin{center}
+  \begin{center} {\bf \Large \textsf {Pulse-Region Identification}}\end{center}
+\end{center}
+
+To identify
+photodetection events
+we use
+the digital equivalent of SET-RESET edge detection,
+with SET triggered when the signal passes threshold~$V_{th}$
+and RESET by the first subsequent zero crossing.
+\begin{figurehere}
+  \begin{center}
+    \includegraphics[width=1\linewidth]{figures/comparator/comparator_at_500ns.eps}
+  \end{center}
+  \vspace{-0.8cm}
+  \figcaption{
+	Blue trace: Overlapping pulses separated by 482~ns. The rising edge of the later pulse is obscured by the earlier pulse and prevents arrival time estimation using the threshold crossing-time.
+    Red line: The two-level (discriminator) identifies the region corresponding to photon detection.
+    Black line: The discriminator logic extended by $\Delta t$ to include the decaying pulse tail. This mode is used to determine the pulse area.
+}
+\end{figurehere}
+\vspace{1cm}
+We implement the SET-RESET latch backwards in time (see Fig.1).
+We use this region to initialise a fit of the signal to a model to determine the pulse arrival times. 
+The logic identifies the region containing the rising edges of underlying pulses,
+and excludes much of the decaying tail.
+In this way, we minimise the false identification of noise fluctuations along the decaying tail as photodetection events.
+
+To determine the number of detected photons, we calculate the pulse area.
+To increase signal-to-noise ratio, we extend the discriminated region by $\Delta t=1300$~ns so that the decaying tail is included. 
+
+
+\begin{center}
+  \begin{center} {\bf \Large \textsf {Discriminator Initialisation}}\end{center}
+\end{center}
+
+\begin{figurehere}
+    \begin{center}
+    \includegraphics[width=0.9\linewidth]{figures/height_histogram_cw/height_histo.eps}
+    \figcaption{\label{fig:height_histo}
+        Pulse height histogram of the TES response to a continuously running LD with~$\bar{n} = 0.25$. The two peaks correspond to 0 and at least 1 photon being detected respectively. Error bars indicate Poissonian standard-deviation.
+        Black line: Point of minimal overlap between Gaussian fits to the two height distributions corresponding to $V_{th} = 7.7$~mV. This threshold is used to initialise the SET-RESET discriminator.}
+    \end{center}
+\end{figurehere}
