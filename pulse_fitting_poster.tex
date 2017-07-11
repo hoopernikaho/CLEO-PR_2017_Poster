@@ -102,7 +102,7 @@
       %%% CQT_Logo
       \begin{minipage}[c]{0.05\textwidth}
         \begin{center}
-          \includegraphics[width=14cm,angle=0]{figures/CQT_Logo}
+          \includegraphics[width=14cm,angle=0]{figures/CQT_Logo.eps}
         \end{center}
       \end{minipage}\hspace{10cm}
       %%% Title
@@ -140,15 +140,18 @@
     %
     Slow recovery time, on the order of microseconds, limits the number resolving and timing accuracy for high photon-flux detection.
     %
-    One method uses the differentiated TES signal to determine the arrival time of overlapping signals and to count X-ray photons~\cite{Fowler:2015ef}.
+    One method applied to X-ray detection, uses the differentiated TES signal to determine the arrival time of overlapping signals and to count photons~\cite{Fowler:2015ef}.
     %
     For near-infrared (NIR) photons the signal-to-noise ratio is low, and timing accuracy is affected by the bandwidth limitations necessary to reject false positives.
     %
-    Here, we use a two-level discriminator to locate pulses, and the area of the identified signal regions to count photons.
+    Here, we use a two-level discriminator to identify a window surrounding the pulses, 
+    and use the pulse area in the window to count photons
+    emitted by a continuous wave (CW) laser diode (LD) 
+    centered at 810~nm.
     %
-    We show how it
-    improves photon number discrimination for NIR continuous wave (CW) sources,
-    and propose a scheme to determine the arrival time and pulse amplitude of the underlying pulses.
+    We demonstrate 
+    the photon number discrimination of this method,
+    and propose a scheme to determine arrival times and pulse amplitudes of overlapping pulses.
 
 \begin{multicols}{2}
 \setlength{\parskip}{0ex}

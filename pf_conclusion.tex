@@ -5,7 +5,7 @@
 % We demonstrated a technique that counts photons using the area of a signal portion identified with a discriminator. 
 % This technique is a useful alternative to identifying the number of pulse edges using differentiation, especially when signal-to-noise ratio is small.
 % \vspace{1cm}
-As an extension to this technique, we use the discriminator region to bound the range of values expected for the arrival time of individual pulses in a trace containing $N$ overlapping signals. 
+As an extension to this technique, we use the discriminator region (Fig.1b) to bound the range of values expected for the arrival time of individual pulses in a trace containing $N$ overlapping signals. 
 %
 We use this bound to initialise a least-squares fit of the signal to a multi-photon model comprising of a linear superposition of $N$ single-photon models.
 %
@@ -20,7 +20,7 @@ The fit returns the amplitudes and arrival times of the individual pulses.
     \figcaption{\label{fig:height_histo}
     Fit (black) of a 2-photon signal (grey) composed of individual single photon events (red, blue) separated by ~$\sim$170~ns, comparable to twice the rise time of a single photon pulse. 
     %
-    The single photon model was obtained by averaging 10000 single photon detection events.
+    The single photon model was obtained by averaging the TES response to 300 single photon events.
 }
   \end{minipage}
 \end{figurehere}

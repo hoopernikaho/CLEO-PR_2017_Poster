@@ -4,9 +4,13 @@
 \end{center}
 
 To determine the number of photodetection events, we calculate the signal area and assume that it is proportional to the energy absorbed~\cite{Cabrera2000509}.
-%
-To increase signal-to-noise ratio, we use the discriminator to identify integration windows surrounding photodetection events.
-%
+
+To increase signal-to-noise ratio, we use the discriminator 
+to identify integration windows surrounding pulses 
+that exhibit a leading edge and decaying tail (Fig.1c).
+
+In this way, pulses that are partially captured within our finite acquisition windows ($10~\mu$s) do not degrade the pulse-integral distinguishability between traces containing complete photodetection events.
+
 We compute the pulse area $a$ for every trace
 and organize them in histogram $C(a)$.
 
@@ -32,13 +36,13 @@ and organize them in histogram $C(a)$.
 We fit the area distribution 
 identified by the discriminator 
 corresponding to $n>0$ detection events 
-to the sum of Gaussian peaks~$G_1(a; a_1, \sigma_1)+G_2(a; a_2, \sigma_2)$.
+to a linear combination of Gaussian distributions~
+$G_1(a; a_1, \sigma_1)$ and $G_2(a; a_2, \sigma_2))$.
 
 % \vspace{1cm}
-The Gaussian distributions corresponding to 1 and 2 photons in Fig.3 demonstrates near linear dependence of the area with photon energy ($a_2/a_1 = 1.98$).
-%
-We determine the minimum overlap between the distributions to be the threshold $th_{12}$. 
-At this threshold, 
+% The ratio of the peak positions $a_2/a_1 = 1.98$ demonstrates the linear dependance of the pulse area with photon energy.
+
+At the minimum overlap between the distributions $th_{12}$,
 the probability of falsely identifying an $n=1$ trace as an $n=2$ trace is 0.2\%,
 while
 the probability of falsely identifying an $n=2$ trace as an $n=1$ trace is 0.3\%.
